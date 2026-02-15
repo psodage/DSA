@@ -1,0 +1,45 @@
+//Day 4 - Median of Two Sorted Arrays
+class Solution {
+    public double findMedianSortedArrays(int[] num1, int[] num2) {
+        int n=num1.length;
+        int m=num2.length;
+        int []res=new int[n+m];
+        int in=0;
+        double med;
+        for(int i=0;i<n;i++)
+        {
+            res[in]=num1[i];
+            in++;
+        }
+        for(int j=0;j<m;j++)
+        {
+            res[in]=num2[j];
+            in++;
+        }
+        for(int k=0;k<res.length;k++)
+        {
+            for(int l=k+1;l<res.length;l++)
+            {
+                if(res[k]>res[l])
+                {
+                    int temp=res[k];
+                    res[k]=res[l];
+                    res[l]=temp;
+                }
+            }
+        }
+        if(res.length%2==0)
+        {
+            int pos1=(res.length+1)/2;
+            int pos2=((res.length+1)/2)+1;
+            med=(res[pos1-1]+res[pos2-1])/2.0;    
+           
+        }
+        else
+        {
+           med=res[res.length/2];
+           
+        }
+        return med;
+    }
+}
