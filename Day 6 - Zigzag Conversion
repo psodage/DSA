@@ -1,0 +1,44 @@
+//Day 6 - Zigzag Conversion
+class test
+{
+    public static void main(String args[])
+    {
+       StringBuilder s=new StringBuilder("PAYPALISHIRING");
+       int numRows=4;
+
+       if (numRows == 1 || s.length() <= numRows) {
+            System.out.println(s.toString());
+        }
+
+        StringBuilder[] rows=new StringBuilder[numRows];
+        for(int i=0;i<numRows;i++)
+        {
+          rows[i]=new StringBuilder();
+        }
+
+        int currentRow=0;
+        boolean goingdown=false;  
+        for(int i=0;i<s.length();i++)
+        {
+          rows[currentRow].append(s.charAt(i));
+          if(currentRow==0 || currentRow==numRows-1)
+          {
+               goingdown=!goingdown;
+          }
+          if(goingdown)
+          {
+               currentRow++;
+          }
+          else
+          {
+               currentRow--;
+          }
+        }
+        StringBuilder res=new StringBuilder("");
+        for(int i=0;i<numRows;i++)
+        {
+          res.append(rows[i]);
+        }
+        System.out.println(res.toString());
+    }
+}
