@@ -1,0 +1,41 @@
+//Day 8 - String To Integer (atoi))
+class Solution {
+    public int myAtoi(String s) {
+        int n = s.length();
+        int i = 0;
+
+        // Skip leading spaces
+        while (i < n && s.charAt(i) == ' ') i++;
+
+        if (i == n) return 0;
+
+        // Handle sign
+        int sign = 1;
+        char c = s.charAt(i);
+        if (c == '-' || c == '+') {
+            if (c == '-') sign = -1;
+            i++;
+        }
+
+        int result = 0;
+
+        while (i < n) {
+            c = s.charAt(i);
+
+            if (c < '0' || c > '9') break;
+
+            int digit = c - '0';
+
+            // Overflow check before multiply
+            if (result > 214748364 || 
+               (result == 214748364 && digit > 7)) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+
+            result = result * 10 + digit;
+            i++;
+        }
+
+        return result * sign;
+    }
+}
